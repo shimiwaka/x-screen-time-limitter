@@ -1,0 +1,23 @@
+/* X Screen Time Limiter - Content Styles */
+
+/* タイマー要素のアニメーション */
+#x-screen-time-timer {
+  animation: fadeIn 0.3s ease-in-out;
+  transition: all 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 時間切れ時の背景の遷移をスムーズにする */
+body {
+  transition: background-color 0.5s ease;
+}

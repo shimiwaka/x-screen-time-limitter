@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X Screen Time Limiter</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <h1>X Screen Time Limiter</h1>
+
+    <div class="section">
+      <h2>今日の使用状況</h2>
+      <div class="time-display">
+        <div class="time-item">
+          <span class="label">残り時間:</span>
+          <span class="value" id="remainingTime">--:--</span>
+        </div>
+        <div class="time-item">
+          <span class="label">使用時間:</span>
+          <span class="value" id="usedTime">--:--</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>1日の制限時間設定</h2>
+      <div class="settings">
+        <input type="number" id="dailyLimit" min="1" max="1440" placeholder="60">
+        <span>分</span>
+        <button id="saveButton">保存</button>
+      </div>
+      <div id="saveMessage" class="message"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <h2>使用履歴</h2>
+        <a href="#" id="viewAllHistory" class="view-all-link">全ての履歴を見る →</a>
+      </div>
+      <div id="historyContainer">
+        <div class="loading">読み込み中...</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

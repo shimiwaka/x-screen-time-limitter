@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- 背景円 -->
+  <circle cx="64" cy="64" r="60" fill="#1DA1F2"/>
+
+  <!-- 時計の文字盤 -->
+  <circle cx="64" cy="64" r="45" fill="white"/>
+
+  <!-- 時計の目盛り -->
+  <circle cx="64" cy="24" r="3" fill="#1DA1F2"/>
+  <circle cx="64" cy="104" r="3" fill="#1DA1F2"/>
+  <circle cx="24" cy="64" r="3" fill="#1DA1F2"/>
+  <circle cx="104" cy="64" r="3" fill="#1DA1F2"/>
+
+  <!-- 短針 (時針) -->
+  <line x1="64" y1="64" x2="64" y2="45" stroke="#1DA1F2" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- 長針 (分針) -->
+  <line x1="64" y1="64" x2="80" y2="64" stroke="#1DA1F2" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- 中心の円 -->
+  <circle cx="64" cy="64" r="5" fill="#1DA1F2"/>
+
+  <!-- X マーク (制限を表す) -->
+  <line x1="90" y1="30" x2="105" y2="45" stroke="#DC2626" stroke-width="6" stroke-linecap="round"/>
+  <line x1="105" y1="30" x2="90" y2="45" stroke="#DC2626" stroke-width="6" stroke-linecap="round"/>
+</svg>
