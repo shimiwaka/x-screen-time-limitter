@@ -39,16 +39,21 @@ function createTimerElement() {
 function updateTimer() {
   if (!timerElement) return;
 
-  const remaining = Math.max(0, dailyLimit - currentUsage);
-  timerElement.textContent = `残り時間: ${formatTime(remaining)}`;
+  const remaining = dailyLimit - currentUsage;
 
-  // 時間切れの場合は背景を赤くする
-  if (remaining === 0) {
-    document.body.style.backgroundColor = '#fee2e2';
-    timerElement.style.backgroundColor = 'rgba(220, 38, 38, 0.95)';
-  } else {
+  if (remaining >= 0) {
+    // 制限時間内の場合
+    timerElement.textContent = `残り時間: ${formatTime(remaining)}`;
     document.body.style.backgroundColor = '';
     timerElement.style.backgroundColor = 'rgba(29, 161, 242, 0.95)';
+    timerElement.style.color = 'white';
+  } else {
+    // 時間超過の場合
+    const overtime = Math.abs(remaining);
+    timerElement.textContent = `超過時間: ${formatTime(overtime)}`;
+    document.body.style.backgroundColor = '#fee2e2';
+    timerElement.style.backgroundColor = 'rgba(220, 38, 38, 0.95)';
+    timerElement.style.color = 'white';
   }
 }
 
