@@ -1,6 +1,7 @@
 let isXTabActive = false;
 let currentTabId = null;
 let countInterval = null;
+let isSystemIdle = false; // システムがアイドル/スリープ状態かどうか
 
 // 今日の日付を取得 (YYYY-MM-DD形式、日本時間基準)
 function getTodayKey() {
@@ -43,6 +44,7 @@ async function incrementUsage() {
 // カウントを開始
 function startCounting(tabId) {
   if (countInterval) return; // 既に開始している場合は何もしない
+  if (isSystemIdle) return; // システムがアイドル/スリープ状態の場合は開始しない
 
   currentTabId = tabId;
   isXTabActive = true;
@@ -152,6 +154,24 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     })();
 
     return true; // 非同期レスポンスを示す
+  }
+});
+
+// システムのアイドル状態を監視
+// アイドル検出の間隔を60秒に設定
+chrome.idle.setDetectionInterval(60);
+
+chrome.idle.onStateChanged.addListener((newState) => {
+  // newStateは "active", "idle", "locked" のいずれか
+  if (newState === 'idle' || newState === 'locked') {
+    // アイドル状態またはロック状態（スリープ含む）の場合
+    isSystemIdle = true;
+    stopCounting();
+  } else if (newState === 'active') {
+    // アクティブ状態に戻った場合
+    isSystemIdle = false;
+    // Xタブがアクティブな場合は、カウントを再開
+    checkActiveTab();
   }
 });
 
